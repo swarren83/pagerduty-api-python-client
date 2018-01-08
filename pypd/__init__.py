@@ -2,6 +2,7 @@
 # Copyright (c) PagerDuty.
 # See LICENSE for details.
 import logging
+import os
 
 from .version import __version__
 from .models.ability import can, abilities
@@ -32,3 +33,7 @@ def set_api_key_from_file(path, set_global=True):
         global api_key
         api_key = f.read().strip()
     return api_key
+
+def set_api_key_from_env_var(env_var, set_global=True):
+    """Set the global api_key from an environment variable."""
+    return os.environ.get(env_var, 'Not Set')
